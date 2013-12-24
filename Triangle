@@ -1,0 +1,23 @@
+public class Solution {
+    public int minimumTotal(ArrayList<ArrayList<Integer>> triangle) {
+        if(triangle.size()==0) return 0; 
+        ArrayList<Integer> minindex = new ArrayList<Integer>();
+      
+        for(int layer =triangle.size()-2; layer >= 0; layer--)
+        {
+            for(int i=0; i<triangle.get(layer).size();++i)
+            {
+                if(triangle.get(layer+1).get(i)<triangle.get(layer+1).get(i+1))
+                {
+                    triangle.get(layer).set(i, triangle.get(layer).get(i)+triangle.get(layer+1).get(i));
+                }
+                else
+                {
+                    triangle.get(layer).set(i, triangle.get(layer).get(i)+triangle.get(layer+1).get(i+1));
+                }
+            }
+            
+        }
+        return triangle.get(0).get(0);
+    }
+}
