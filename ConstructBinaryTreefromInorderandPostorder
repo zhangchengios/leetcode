@@ -21,7 +21,7 @@ public class Solution {
         if(startin >= endin) return new TreeNode(inorder[startin]);
        
         TreeNode root = new TreeNode(postorder[endpo]);
-        for( int rootindex = 0; rootindex<inorder.length; rootindex++)
+        for( int rootindex = 0; rootindex<inorder.length; rootindex++)// use one loop to finish the visit
         {
             if(inorder[rootindex] == postorder[endpo]) 
             {     
