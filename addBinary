@@ -1,3 +1,5 @@
+
+// need to rewrite in the 2nd round
 public class Solution {
     public String addBinary(String a, String b) {
         if(a==null) return b;
