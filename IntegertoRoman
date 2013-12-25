@@ -1,0 +1,75 @@
+public class Solution {
+    public String intToRoman(int num) {
+        StringBuilder sb = new StringBuilder();
+        String[] ones ={"I","X","C","M"};
+        String[] fives ={"V","L","D"};
+        int[] div = {1,10,100};
+        
+        int sub=num;
+        for(int i=0; i<sub/1000; ++i) sb.append("M");
+        sub = sub%1000;
+        for(int i =2; i>=0;--i)
+        {
+            // forget break first, and remember the principle after it
+            int res = sub/div[i];
+            if(res>0){
+                switch(res){
+                    case 1:{
+                        sb.append(ones[i]);
+                        break;
+                    }
+                    case 2:{
+                        sb.append(ones[i]);
+                        sb.append(ones[i]);
+                        break;
+                    }
+                    case 3:{
+                        
+                        sb.append(ones[i]);
+                        sb.append(ones[i]);
+                        sb.append(ones[i]);
+                        break;
+                    }
+                    case 4:{
+                        sb.append(ones[i]);
+                        sb.append(fives[i]);
+                        break;
+                    }
+                    case 5:{
+                        sb.append(fives[i]);
+                        break;
+                    }
+                    case 6:{
+                        sb.append(fives[i]);
+                         sb.append(ones[i]);
+                         break;
+                    }
+                    case 7:{
+                        sb.append(fives[i]);
+                         sb.append(ones[i]);
+                         sb.append(ones[i]);
+                         break;
+                    }
+                    case 8:{
+                        sb.append(fives[i]);
+                         sb.append(ones[i]);
+                         sb.append(ones[i]);
+                         sb.append(ones[i]);
+                         break;
+                    }
+                    case 9:{
+                        sb.append(ones[i]);
+                        sb.append(ones[i+1]);
+                        break;
+                    }
+                }
+                
+     
+            }
+           
+            sub = sub%div[i];
+        }
+        
+        return sb.toString();
+    }
+}
