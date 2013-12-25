@@ -1,33 +1,23 @@
 public class Solution {
     public int[] twoSum(int[] numbers, int target) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
-      int index1 = 0;
-      int index2 = 0; 
       int[] result = new int[2];
       HashMap<Integer,Integer> submap = new HashMap<Integer,Integer>();
       
-      // key is here to use hashmap store the sub between the target to the numbers array
       for(int i=0; i<numbers.length; ++i)
       {
           if(submap.get(numbers[i])!=null)
           {
-              index1 = submap.get(numbers[i]);
-              index2 = i;
+              result[0] = submap.get(numbers[i])+1;
+              result[1] = i+1;
+              break;
           }
           else
           {
               submap.put(target-numbers[i],i);
           }
       }
-      
-       result[0] = index1+1;    
-       result[1] = index2+1;
-       
-      if(index1>index2)
-      {
-          result[0] = index2+1;
-          result[1] = index1+1;
-      }
+ 
         
        return result;
           
