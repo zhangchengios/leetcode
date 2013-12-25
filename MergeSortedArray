@@ -1,0 +1,30 @@
+public class Solution {
+    public void merge(int A[], int m, int B[], int n) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        
+        // start from the end can avoid insert
+            if(n!=0)
+            {
+              int indexA = m-1;
+              int indexB = n-1;
+              int index  = m+n-1;
+              
+              for(; index>=0&&indexA>=0&&indexB>=0; index--)
+              {
+                  if(A[indexA]>=B[indexB]) {
+                     A[index]=A[indexA--]; 
+                  }
+                  else{
+                     A[index]=B[indexB--];
+                  }
+              }
+              while(indexB>=0){// used if instead of while for 1st time
+                  A[index--] = B[indexB--];
+              }
+            
+            }
+        
+    }
+    
+}
