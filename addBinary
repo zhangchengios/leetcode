@@ -1,0 +1,87 @@
+public class Solution {
+    public String addBinary(String a, String b) {
+        if(a==null) return b;
+        if(b==null) return a;
+        
+        int lenA = a.length();
+        int curA = lenA-1;
+        int lenB = b.length();
+        int curB = lenB-1;
+        int add = 0;
+        char[] result = (lenA>=lenB? a.toCharArray():b.toCharArray());
+            while(curB>=0&&curA>=0)
+            {
+                if(a.charAt(curA)=='1'&&b.charAt(curB)=='1')
+                {
+                    if(add==1)
+                    {
+                        result[curA]='1';
+                        add=1;
+                    }
+                    else
+                    {
+                        result[curA]='0';
+                        add=1;
+                    }
+                }
+                else
+                {
+                    if(a.charAt(curA)=='1'||b.charAt(curB)=='1')
+                    {
+                        if(add==1)
+                        {
+                            result[curA]='0';
+                            add=1;
+                        }
+                        else
+                        {
+                            result[curA]='1';
+                            add=0;
+                        }
+                    
+                    }
+                    else
+                    {
+                        if(add==1)
+                        {
+                            result[curA]='1';
+                            add=0;
+                        }
+                        else
+                        {
+                            result[curA]='0';
+                            add=0;
+                        }
+                        
+                    }
+                }
+                curA--;
+                curB--;
+            }
+            int ind = curA>=0? curA:curB;
+            if(add>0)
+            {
+                while(ind>=0)
+                {
+                    if(result[ind]=='1')
+                    {
+                        result[ind]='0';
+                        add =1;
+                    }
+                    else{
+                        return new String(result);
+                    }
+                    ind--;
+                }
+                char[] res = new char[result.length+1];
+                res[0]='1';
+                for(int i =0; i<result.length; ++i)
+                {
+                    res[i+1] = result[i];
+                 }
+            
+                return new String(res);
+            }
+            return new String(result);
+    }
+}
