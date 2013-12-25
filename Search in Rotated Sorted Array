@@ -1,0 +1,66 @@
+public class Solution {
+    public int search(int[] A, int target) {
+        return rotatedSearch(A, target, 0, A.length-1);
+    }
+    
+    public int rotatedSearch(int[] A, int target, int start, int end){
+        int mid = (start+end)/2;
+        if(target == A[mid]) return mid;
+        if(start >= end) return -1;
+       // determine which part is sorted or rotated
+        if(A[mid]<=A[end])//right half is sorted 
+        {
+            if(target>=A[mid]&&target<=A[end])
+            {
+                return binarySearch(A,target,mid+1,end);
+            }
+            else
+            {
+                return rotatedSearch(A,target,start,mid-1);
+            }
+        }
+        else//left half is sorted
+        {
+            if(target<=A[mid]&&target>=A[start])
+            {
+                return binarySearch(A,target,start,mid-1);
+            }
+            else
+            {
+                return rotatedSearch(A,target,mid+1,end);
+            }
+            
+        }
+    }
+    
+    public int binarySearch(int[] A, int target, int start, int end){
+        if(start == end){
+            if(A[start]==target)
+            {
+                return start;
+            }
+            else
+            {
+                return -1;
+            }
+            
+        }
+        int left = start;
+        int right = end;
+        while(left<=right)
+        {
+            int mid = (left+right)/2;
+            if(A[mid]==target) return mid;
+            if(A[mid]<target)
+            {
+                left = mid+1;
+            }
+            else
+            {
+                right = mid-1;
+            }
+        }
+        return -1;
+        
+    }
+}
