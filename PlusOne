@@ -1,0 +1,28 @@
+public class Solution {
+    public int[] plusOne(int[] digits) {
+        // IMPORTANT: Please reset any member data you declared, as
+        // the same Solution instance will be reused for each test case.
+        int cur = digits.length-1;
+        while(cur>=0)
+        {
+            if(digits[cur]+1<10)
+            {
+                ++digits[cur];
+                return digits;
+            }
+            else
+            {
+                digits[cur] =0;
+                cur--;
+            }
+        }
+        
+        int[] result = new int[digits.length+1];// forget new a larger 1
+        result[0] =1;
+        for(int i=0; i<digits.length; ++i)
+        {
+            result[i+1]=digits[i];
+        }
+        return result;
+    }
+}
