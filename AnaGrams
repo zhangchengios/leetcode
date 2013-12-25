@@ -1,0 +1,53 @@
+public class Solution {
+    public ArrayList<String> anagrams(String[] strs) {
+        ArrayList<String> res = new ArrayList<String>();
+        
+        if(strs.length==0) return res;
+        
+        HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+        for(int i=0; i<strs.length; ++i)
+        {
+           String str = sort(strs[i]);
+           if(map.get(str)==null)
+           {
+               ArrayList<String> arr = new ArrayList<String>();
+               arr.add(strs[i]);
+               map.put(str,arr);
+           }
+           else
+           {
+               map.get(str).add(strs[i]);
+           }
+            
+        }
+        
+        Iterator it = map.entrySet().iterator();// not familiar with the iterator and entry
+        while(it.hasNext())
+        {
+            Map.Entry pairs = (Map.Entry)it.next();
+            ArrayList<String> val = (ArrayList<String>)pairs.getValue();
+            if(val.size()>1) {// forget the format transform
+                res.addAll(val);//use addAll to add all elements
+            }
+        }
+        return res;
+    }
+    
+    public String sort(String input){
+        char[] array = input.toCharArray();
+        for(int i=0;i<array.length;++i)
+        {
+            for(int j=i+1; j<array.length; ++j)
+            {
+                if(array[i]>array[j]){
+                    char mid = array[i];// use int instead of char
+                    array[i]= array[j];
+                    array[j]= mid;
+                }
+            }
+        }
+        return new String(array);
+    }
+    
+    
+}
