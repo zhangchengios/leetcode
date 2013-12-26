@@ -1,0 +1,65 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int sumNumbers(TreeNode root) {
+        int result = 0;
+        if(root==null) return 0;
+        if(root.left==null&&root.right==null) return root.val;
+        ArrayList<ArrayList<Integer>> paths = visit(root); 
+        Iterator it = paths.iterator();
+        while(it.hasNext()){
+            result+= calPaths((ArrayList<Integer>)it.next());
+        }
+        
+        return result;
+    }
+    
+    public int calPaths(ArrayList<Integer> path){
+        int res = 0;
+        int mul = 1;
+        Iterator it = path.iterator();
+        while(it.hasNext()){
+            res += ((Integer)it.next())*mul;
+            mul*=10;
+        }
+        
+        return res;
+    }
+    
+    public ArrayList<ArrayList<Integer>> visit(TreeNode root){
+        if(root==null) return null;
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> tmp =null;
+        Iterator it =null;
+        if(root.left==null&&root.right==null) {//forget to consider this situation for the first time
+            ArrayList<Integer> arr = new ArrayList<Integer>();
+            arr.add(root.val);
+            res.add(arr);
+        }
+        if(root.left!=null) {
+            tmp= visit(root.left);
+            it = tmp.iterator();
+            while(it.hasNext()){
+                ((ArrayList<Integer>)it.next()).add(root.val);// it.next need to be transformed before used.
+            }
+            res.addAll(tmp);
+            
+        }
+        if(root.right!=null){
+            tmp= visit(root.right);
+            it = tmp.iterator();
+            while(it.hasNext()){
+                ((ArrayList<Integer>)it.next()).add(root.val);
+            }
+            res.addAll(tmp);
+        }
+        return res;
+    }
+}
