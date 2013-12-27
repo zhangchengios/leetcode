@@ -1,0 +1,16 @@
+public class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int total =0;
+        int cur   =0;
+        int index =0;
+        for(int i=0; i<gas.length; ++i){
+            total +=gas[i]-cost[i];//judge whether the whole cost-gas >=0. if yes, then has answer, else return -1. 
+            cur   +=gas[i]-cost[i];//return next index of the index, where does not have enough gas.
+            if(cur<0){
+                cur =0;
+                index =i;
+            }
+        }
+        return total>=0? (index+1)%(gas.length):-1;
+    }
+}
