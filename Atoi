@@ -1,0 +1,34 @@
+public class Solution {
+    public int atoi(String str) {
+        if(str==null||str.length()==0) return 0;
+        int isPos = 1;
+        int cur = 0;
+        long res = 0;
+        // case'.', case ' ', case '-1'. 
+        while(str.charAt(cur) ==' ') cur++;
+        if(str.charAt(cur)=='-') {
+            isPos = -1;
+            cur++;
+        }
+        if(str.charAt(cur)=='+'){// judge the '+' condition
+            isPos = 1;
+            cur++;
+        } 
+        while(cur<str.length()){
+            int digi = str.charAt(cur)-48;
+            if(digi>=0 &&digi<10){
+                res = res*10+digi;
+            }else{
+                cur = str.length();
+            }
+            cur++;
+        }
+        if(isPos>0){// judge the overboard condition 
+            if(res>Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        }else{
+            if(res*isPos <Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        }
+        
+        return (int)res*isPos;
+    }
+}
