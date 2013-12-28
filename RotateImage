@@ -1,0 +1,44 @@
+//key here is to choose the right edge of the loop. Especially the second inner loop. 
+//only 1 quater of the whole image need to be visited
+
+public class Solution {
+    public void rotate(int[][] matrix) {
+        
+        if(matrix.length!=0&&matrix[0].length!=0){
+            int med = 0;
+            int si= 0;
+            int sj= 0;
+            int counter =0;
+            int last = matrix[si][sj] ;
+            for(int dep =0; dep<matrix.length/2;++dep){
+                for(int i=0; i<(matrix.length+1)/2; ++i ){// big bug here, first time set i<matrix.length-dep, have one more round of iteration
+                     si = dep;
+                     sj = i;
+                     last = matrix[si][sj] ;
+                     int sti = si;
+                     int stj = sj;
+                     counter =0;
+                     boolean stop =false;
+                     
+                     while(!stop){
+                     
+                     if((si==sti&&sj==stj)&&counter!=0){
+                         stop =true;
+                     }
+                         int tmp = matrix[sj][matrix.length-1-si];
+                         matrix[sj][matrix.length-1-si] = last;
+                         last = tmp ;
+                         int tmp2 = si;
+                         si = sj;
+                         sj = matrix.length-1-tmp2;
+                         counter++;
+                    }
+                }
+            }
+            
+            
+            
+                   
+        }
+    }
+}
