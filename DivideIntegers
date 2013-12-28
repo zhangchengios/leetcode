@@ -1,0 +1,23 @@
+public class Solution {
+    public int divide(int dividend, int divisor) {
+        if(dividend==0) return 0;
+        int counter =0;
+        long a = (long)Math.abs((long)dividend);// forget to add another long before'diviend';
+        long b = (long)Math.abs((long)divisor);
+        long c =0;
+        int positive = -1;
+        if((dividend>0&&divisor>0)||(dividend<0&&divisor<0)) positive =1;
+        
+        while(a>=b){
+            c = b;
+            int i =0;
+            while(a>=c){
+                a-=c;
+                counter+= 1<<i;// fsd
+                c=c<<1;//sequence is importnat
+                ++i;
+            }
+        }
+        return counter*positive;
+    }
+}
