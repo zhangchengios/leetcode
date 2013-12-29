@@ -1,0 +1,76 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null) return;
+        ListNode cur = head;
+        ListNode head1 = head;
+        ListNode head2 =null;
+        int length = 1;
+        while(cur.next!=null) {
+            cur = cur.next;
+            length++;
+        }
+        if(length>2){
+            int len1= length%2==0? length/2:length/2+1;
+            int len2 = length-len1;
+            
+            // divide two lists
+            cur = head;
+            for(int i=1; i<len1;++i){
+                cur=cur.next;
+            }
+            head2 = cur.next;
+            cur.next =null;
+            if(len2>1){
+                head2=reverse(head2);
+            }
+           
+            head = merge(head1,head2,len2);
+        }
+        
+    }
+    public ListNode reverse(ListNode head){
+	        ListNode nhead = new ListNode(-1);
+	        nhead.next = head;
+	        ListNode cur = head.next;
+	        ListNode pre = head;
+	        
+	          while(cur!=null){
+		            pre.next = cur.next;
+		            cur.next = nhead.next;
+		            nhead.next = cur;
+		            cur = pre.next;
+		       }
+		    
+	        return nhead.next;
+	    }
+	    
+	    public ListNode merge(ListNode head1,ListNode head2,int len2){
+	        ListNode nhead1 = new ListNode(-1);
+	        nhead1.next = head1;
+	        
+	        ListNode nhead2 = new ListNode(-1);
+	        nhead2.next = head2;
+	        
+	        ListNode cur1 = head1;
+	        ListNode cur2 = head2;
+	        while(nhead2.next!=null){
+	            ListNode ins = nhead2.next;
+	            nhead2.next = ins.next;
+	            ins.next = cur1.next;
+	            cur1.next = ins;
+	            cur1 = cur1.next.next;
+	        }
+	        return nhead1.next;
+	    }
+}
