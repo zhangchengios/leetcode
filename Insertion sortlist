@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null) return null;
+        ListNode nhead = new ListNode(-1);
+        nhead.next = head;
+        ListNode tobesort = head.next;
+        ListNode edge = head;
+        while(tobesort!=null){
+            
+            edge = tobesort.next;
+            ListNode cur = nhead.next;
+            ListNode pre = nhead;
+            boolean cont = true;
+            while(cont&& cur!=tobesort){// remember to set the tail.next =null;
+                if(cur.val>tobesort.val){
+                    
+                    ListNode tmp = tobesort.next;
+                    
+                    pre.next = tobesort;
+                    tobesort.next = cur;
+                    
+                    while(cur.next!=tobesort) cur = cur.next;// bug here, forgot to deal with the tail of the list
+                    cur.next = tmp;
+                    
+                    cont=false;
+                    
+                }else{
+                    pre = cur;
+                    cur = cur.next;
+                }
+            }
+            
+            
+            
+            tobesort = edge;
+            
+        }
+        
+        return nhead.next;
+    }
+}
