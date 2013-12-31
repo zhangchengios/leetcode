@@ -12,5 +12,5 @@
 12/29 10: Copy list with random pointer(15); remove duplicates(2); remove dupblicates2(2);SwapNodesinPairs(2); RotateList(5); 
          Merge K sorted List(3); remove Nthnodefromendlist(1); InsertionSortList(10); AddTwoNumber(7); SortList(2);
          
-12/30 1: Path Sum II(3);Maximum Depth of Binary Tree(1);Convert Sorted List to Binary Search Tree (1);
-        Binary Tree Level Order Traversal II(2); SameTree(1);
+12/30 6: Path Sum II(3);Maximum Depth of Binary Tree(1);Convert Sorted List to Binary Search Tree (1);
+        Binary Tree Level Order Traversal II(2); SameTree(1);Symmetric Tree(8); 
