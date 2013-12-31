@@ -1,0 +1,45 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        if(root==null||(root.left==null&&root.right==null)) return true;
+        LinkedList<TreeNode> que = new LinkedList<TreeNode>();
+        int lev = 1;
+        int nextlev = 0;
+        que.add(root);
+        while(que.size()!=0){
+            TreeNode cur = null;
+            if(que.get(0)!=root&&que.size()==1) return false;
+            for(int i=0; i<lev/2; ++i){
+                if(que.get(i).val!=que.get(lev-i-1).val) return false;
+            }
+            for(int i =0; i<lev; ++i){
+                cur = que.pop();
+                if(cur.val!=Integer.MAX_VALUE){
+                    if(cur.left!=null){
+                        que.add(cur.left);
+                    }else{
+                        que.add(new TreeNode(Integer.MAX_VALUE));// Bug here, need to consider the empty nodes
+                    }
+                    nextlev++;
+                    if(cur.right!=null){
+                        que.add(cur.right);
+                    }else{
+                        que.add(new TreeNode(Integer.MAX_VALUE));
+                    }
+                    nextlev++;
+                }
+            }
+            lev = nextlev;
+            nextlev = 0;
+        }
+        return true;
+    }
+}
