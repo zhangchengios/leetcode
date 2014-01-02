@@ -1,0 +1,13 @@
+public class Solution {
+    public int removeDuplicates(int[] A) {
+        int numdup =0;
+        for(int i =1; i< A.length; ++i){
+            if(A[i]==A[i-1]){
+                numdup++;
+            }else{
+                A[i-numdup] = A[i];
+            }
+        }
+        return A.length-numdup;
+    }
+}
