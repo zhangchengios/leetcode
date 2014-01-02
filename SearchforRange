@@ -1,0 +1,39 @@
+public class Solution {
+    public int[] searchRange(int[] A, int target) {
+        int[] range = new int[2];
+        range[0] =-1;
+        range[1] = -1;
+        if(A.length>0){
+           binarySearch(A,0,A.length-1,target,range);
+        }
+        return range;
+    }
+    
+    public boolean binarySearch(int[] A, int left, int right, int target, int[] range){
+        if(left==right){
+            if(A[left]==target){
+                range[0]=range[1]=left;
+                return true;
+            }else{
+                return false;
+            }
+        }
+        if(left<right){
+            int mid = (left+right)/2;
+            int nleft = mid;
+            int nright = mid;
+            while(nleft-1>=0&&A[nleft-1]==A[mid]) nleft--;
+            while(nright+1<A.length&&A[nright+1]==A[mid]) nright++;// first time use target instead of A[mid]
+            
+            if(A[mid]==target){
+                range[0]= nleft;
+                range[1]= nright;
+                return true;
+                
+            }else{
+                return binarySearch(A,left,nleft-1,target,range)|| binarySearch(A,nright+1,right,target,range);
+            }
+        }
+        return false;
+    }
+}
