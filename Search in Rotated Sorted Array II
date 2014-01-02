@@ -1,0 +1,36 @@
+public class Solution {
+    public boolean search(int[] A, int target) {
+        return rotatedSearch(A,target,0,A.length-1);
+    }
+    
+    public boolean rotatedSearch(int[] A, int target, int start, int end){
+        if(start<=end){
+            int mid = (start+end)/2;
+            if(A[mid]== target) return true;
+            int nright = mid;
+            int nleft = mid;
+            while(nleft+1<A.length&&A[nleft]==A[nleft+1]) nleft++;
+            while(nright-1>=0&&A[nright-1]==A[nright]) nright--;
+            if(A[mid]<=A[end]){//right size is in order;
+                return binarySearch(A,target,nleft+1,end)|| rotatedSearch(A,target, start, nright-1);
+            }else{
+               return rotatedSearch(A,target,nleft+1,end)|| binarySearch(A,target, start, nright-1);
+            }
+        }
+        return false;
+        
+    }
+    
+    public boolean binarySearch(int[] A, int target, int start, int end){
+        if(start<=end){
+            int mid = (start+end)/2;
+            if(A[mid]== target) return true;
+            int nright = mid;
+            int nleft = mid;
+            while(nleft+1<A.length&&A[nleft]==A[nleft+1]) nleft++;
+            while(nright-1>=0&&A[nright-1]==A[nright]) nright--;
+            return binarySearch(A,target, start, nright-1)||binarySearch(A,target,nleft+1,end);
+        }
+        return false;
+    }
+}
