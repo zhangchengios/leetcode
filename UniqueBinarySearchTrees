@@ -1,0 +1,13 @@
+public class Solution {
+    public int numTrees(int n) {
+        return visit(1,n);
+    }
+    public int visit(int start, int end){
+        if(start>=end) return 1;
+        int res = 0;
+        for(int i =start; i<=end;++i){
+            res+= visit(start,i-1)*visit(i+1,end);
+        }
+        return res;
+    }
+}
