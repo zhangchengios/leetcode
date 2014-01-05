@@ -1,0 +1,33 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> combine(int n, int k) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if(k>n||(k<=0)||n<=0) return res;
+        
+        if(k==n) {
+            for(int i=1; i<=n;++i) addNum(res,i);
+            return res;
+        }else{
+            if(n-1>=1) {
+                ArrayList<ArrayList<Integer>> list2 = combine(n-1,k);
+                res.addAll(list2);
+                
+                ArrayList<ArrayList<Integer>> list = combine(n-1,k-1); // be careful of here. consider.
+                addNum(list,n);
+                res.addAll(list);
+            }
+        }
+        return res;
+    }
+    
+    public void addNum(ArrayList<ArrayList<Integer>> arr, int num){
+        if(arr.size()==0){
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            list.add(num);
+            arr.add(list);
+        }else{
+            for(int i=0; i<arr.size();++i){
+                arr.get(i).add(num);
+            }
+        }
+    }
+}
