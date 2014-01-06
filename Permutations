@@ -1,0 +1,30 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permute(int[] num) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if(num.length==1){
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            list.add(num[0]);
+            res.add(list);
+        }else{
+            for(int i =0; i<num.length; ++i){
+                int[] subarr = getSubArray(num,i);
+                ArrayList<ArrayList<Integer>> sublists=permute(subarr);
+                for(int j=0; j<sublists.size();j++){
+                    sublists.get(j).add(num[i]);
+                }
+                res.addAll(sublists);
+            }
+        }
+        return res;
+    }
+    
+    public int[] getSubArray(int[] list, int ind){
+        int[] subarr = new int[list.length-1];
+        int j =0;
+        for(int i =0; i<list.length; ++i){
+            if(i!=ind) subarr[j++] = list[i];
+        }
+        return subarr;
+    }
+    
+}
