@@ -1,0 +1,29 @@
+public class Solution {
+    public ArrayList<String> generateParenthesis(int n) {
+        HashSet<String> set = new HashSet<String>();
+        ArrayList<String> res = new ArrayList<String>();
+        StringBuilder path = new StringBuilder();
+        if(n>0){
+            visit(n,0,path, res,set);
+        }
+        return res;
+    }
+    
+    public void visit(int n, int pos, StringBuilder path, ArrayList<String> res, HashSet<String> set){
+        path.insert(pos,')');
+        path.insert(pos,'(');
+        if(n==1){
+            if(!set.contains(path.toString())){
+                res.add(path.toString());
+                set.add(path.toString());
+            }
+            
+        }else{
+            for(int i=pos; i<path.length();++i){// bug here first time, key here to get over all  result 
+                visit(n-1,i,path,res,set);
+            }
+        }
+        path.deleteCharAt(pos);
+        path.deleteCharAt(pos);
+    }
+}
