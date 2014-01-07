@@ -22,5 +22,7 @@
 1/3 6:  Insert Interval(10); RomantoInteger(1); MaxSubArray(5); FirstMissingPos(7); Longest ConsecutiveSequence(2);
                     Longest Common Prefix (10);
 1/4  1; Flaten binary tree to linked list(2);
-1/5  4; Populating Next Right Pointers in Each Node II(10);  UniqueBinarySearchTrees(1);Lengthof Last word(3); 
+1/5  7; Populating Next Right Pointers in Each Node II(10);  UniqueBinarySearchTrees(1);Lengthof Last word(3); 
        Combination(5);Valid Parentheses(8); Generate Parentheses(10); Permutations(2);
+       
+1/6   2; Unique Paths(); Unique Paths2();
