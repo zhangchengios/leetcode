@@ -1,0 +1,20 @@
+public class Solution {
+    public int trap(int[] A) {
+        if(A==null||A.length==0) return 0;
+        int[] leftmost = new int[A.length] ;
+        int[] rightmost = new int[A.length];
+        int res = 0;
+        int leftlarge = -1;
+        leftmost[0] = 0;
+        rightmost[A.length-1] =0;
+        for(int i=1; i<A.length; ++i) leftmost[i]=Math.max(A[i-1],leftmost[i-1]);
+        for(int i=A.length-2; i>=0; --i) rightmost[i] = Math.max(A[i+1],rightmost[i+1]);
+        for(int i =0; i< A.length;++i){
+            int bar = Math.min(leftmost[i],rightmost[i]);
+            if(bar>A[i]){
+                res+=bar-A[i];
+            }
+        }
+        return res;
+    }
+}
