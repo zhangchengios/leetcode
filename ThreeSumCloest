@@ -1,0 +1,25 @@
+public class Solution {
+    public int threeSumClosest(int[] num, int target) {
+        int mindis = Integer.MAX_VALUE;
+        int val = 0;
+        Arrays.sort(num);
+        for(int i =0; i<num.length;++i){
+            int left = i+1;
+            int right = num.length-1;
+            while(left<right){
+                int curmin = num[i]+num[left]+num[right]-target;
+                if(curmin==0) return target;
+                else if(curmin>0){
+                    right--;
+                }else if(curmin<0){
+                    left++;
+                }
+                if(Math.abs(curmin)<mindis){
+                    mindis = Math.abs(curmin);
+                    val = curmin+target;
+                } 
+            }
+        }
+        return val;
+    }
+}
