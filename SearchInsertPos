@@ -1,0 +1,24 @@
+public class Solution {
+    public int searchInsert(int[] A, int target) {
+        return binSearch(A,0,A.length-1,target);
+    }
+    
+    public int binSearch(int[] A, int left, int right, int target){
+        if(A==null||A.length==0) return 0;
+        if(left>right){
+            if(left<A.length&&target>A[left]) return left+1;// key here ,to judge the different situation.
+            else return left;
+        }
+        int mid = (left+right)/2;
+        if(mid<A.length){
+                if(mid<A.length && A[mid]==target) return mid;
+                else if(mid<A.length&&A[mid]>target){
+                    return binSearch(A,left,mid-1,target);
+                }else if(mid<A.length&&A[mid]<target){
+                    return binSearch(A,mid+1,right,target);
+                }
+        }
+        
+        return 0 ;
+    }
+}
