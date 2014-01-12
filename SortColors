@@ -1,0 +1,30 @@
+      // 想法是，cur指针遍历过的地方，
+      不是red就是blue,所以，下次遇到red可以直接交换，并且cur++。如果遇到Blue,则换到队尾，但是cur不能++;  
+      public class Solution {
+    public void sortColors(int[] A) {
+        int curR=0;
+        int cur = 0;
+        int curB = A.length-1;
+     
+        while(cur <=curB){
+            if(A[cur]==0){
+                int tmp = A[cur];
+                A[cur] = A[curR];
+                A[curR] = tmp;
+                cur++;
+                curR++;
+                continue;
+            }
+            
+            if(A[cur]==2){
+                int tmp = A[cur];
+                A[cur] = A[curB];
+                A[curB] = tmp;
+                curB--;
+                continue;
+            }
+            cur++;
+        }
+    }
+    
+}
