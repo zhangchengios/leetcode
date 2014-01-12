@@ -1,0 +1,21 @@
+public class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0) return false;
+        long divider = 10;
+        int len = 1;
+        while(x/divider!=0){
+            divider*=10;
+            len++;
+        } 
+        if(len==1) return true;
+        int copyX = x;
+        long dividerL = divider/10;
+     
+        while(dividerL>=10 &&((copyX/dividerL)%10==x%10)){
+            dividerL/=10;
+            x/=10;
+        }
+        return dividerL<10;
+        
+    }
+}
