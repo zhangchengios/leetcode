@@ -1,0 +1,39 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsets(int[] S) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if(S==null||S.length==0) return res;
+        res.add(new ArrayList<Integer>());//must consider the blank array
+        Arrays.sort(S);
+        for(int i =1; i<=S.length;++i){
+            res.addAll(genSubsets(S,0,S.length-1,i));
+        }
+        return res;
+    }
+    
+    public ArrayList<ArrayList<Integer>> genSubsets(int[] S, int left, int right, int len){
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if(len==0) return res;
+        if(right-left+1<len||left>right) return res;
+        if(right-left+1==len){
+            ArrayList<Integer> list = new ArrayList<Integer>();
+            for(int i=left;i<=right;i++)
+                list.add(S[i]);
+            res.add(list);
+        }else{
+                res.addAll(genSubsets(S,left+1,right,len));
+                ArrayList<ArrayList<Integer>> tmp = genSubsets(S,left+1,right,len-1);
+                if(tmp.size()==0){//failed to consider this condition
+                    ArrayList<Integer> list = new ArrayList<Integer>();
+                    list.add(S[left]);
+                    tmp.add(list);
+                }else{
+                    for(int j=0; j<tmp.size();++j){
+                        tmp.get(j).add(0,S[left]);
+                    }
+                }
+                res.addAll(tmp);
+            
+        }
+        return res;
+    }
+}
