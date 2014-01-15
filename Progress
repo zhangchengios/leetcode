@@ -29,3 +29,5 @@
 1/7   1; ThreeSumCloest(4);
 1/11  9 ; SearchInsertPos(7); RemoveElement(7); ClimbStairs(5); GreyCode(4); Set Matrix to Zero(5);subsets(10);Subsets2(3);
           Palindrome Number(6); SortColors(10);
+          
+1/14  2: search a 2d matrix(7);
